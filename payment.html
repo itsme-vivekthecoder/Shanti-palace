@@ -114,7 +114,7 @@ function submitBookingAfterPayment(paymentId) {
   window.open(`https://wa.me/91${cleanPhone}?text=${userMsg}`, "_blank");
 
   // ---------- OWNER WHATSAPP ----------
-  const OWNER_PHONE = "918630760100";
+  const OWNER_PHONE = "9690504051";
 
   const ownerMsg =
     `New Booking Received!%0A%0A` +
@@ -131,7 +131,7 @@ function submitBookingAfterPayment(paymentId) {
 
   // Avoid popup block → redirect method
   setTimeout(() => {
-    window.location.href = `https://wa.me/${OWNER_PHONE}?text=${ownerMsg}`;
+    window.location.href = `https://wa.me/91${OWNER_PHONE}?text=${ownerMsg}`;
   }, 800);
 
   // ---------- SUCCESS PAGE ----------
@@ -143,6 +143,7 @@ function submitBookingAfterPayment(paymentId) {
 </script>
 </body>
 </html>
+
 
 
 
