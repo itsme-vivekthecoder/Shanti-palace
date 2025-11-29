@@ -30,87 +30,9 @@
 </section>
 
 <script>
-  // load data from localStorage and display
   const name = localStorage.getItem("fullName") || "";
   const email = localStorage.getItem("email") || "";
   const phone = localStorage.getItem("phone") || "";
   const checkIn = localStorage.getItem("checkIn") || "";
   const checkOut = localStorage.getItem("checkOut") || "";
-  const members = localStorage.getItem("members") || "";
-  const roomType = localStorage.getItem("roomType") || "";
-  const totalDays = localStorage.getItem("totalDays") || "";
-  const finalAmount = localStorage.getItem("finalAmount") || 0;
-
-  document.getElementById("p_name").innerText = name;
-  document.getElementById("p_phone").innerText = phone;
-  document.getElementById("p_room").innerText = roomType;
-  document.getElementById("p_members").innerText = members;
-  document.getElementById("p_checkin").innerText = checkIn;
-  document.getElementById("p_checkout").innerText = checkOut;
-  document.getElementById("p_days").innerText = totalDays;
-  document.getElementById("p_amount").innerText = finalAmount;
-
-  document.getElementById("payBtn").addEventListener("click", function(){
-    const amountPaise = Math.round(Number(finalAmount) * 100); // Razorpay needs paise
-
-    var options = {
-      "key": "rzp_live_RkeY8hnUYgxlKN", // <-- replace
-      "amount": amountPaise,
-      "currency": "INR",
-      "name": "Shanti Palace Vrindavan",
-      "description": "Room Booking Payment",
-      "prefill": { "name": name, "email": email, "contact": phone },
-      "handler": function (response){
-        // payment success -> submit to Google Form and notify
-        submitBookingAfterPayment(response.razorpay_payment_id);
-      },
-      "theme": { "color": "#c27802" }
-    };
-    var rzp = new Razorpay(options);
-    rzp.open();
-  });
-
-  // submit booking to Google Form and open WhatsApp for user + owner
-  function submitBookingAfterPayment(paymentId) {
-    // build google form data - REPLACE these values with real form URL & entry IDs
-    const googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSciTMHoPTqDOYNXGWZ-U01QO0cihDlAUwiwuu2HjZbXwTLucw/viewform?"; // e.g. https://docs.google.com/forms/d/e/FORM_ID/formResponse
-
-    const formData = new URLSearchParams({
-      "entry.1181525787": name,
-      "entry.1505113845": phone,
-      "entry.26796576": email,
-      "entry.133939998": roomType,
-      "entry.8435932": checkIn,
-      "entry.1082238197": checkOut,
-      "entry.516627955": totalDays,
-      "entry.1301069124": members,
-      "entry.764039404": finalAmount,
-      "entry.2021412614": paymentId
-    });
-
-    // send to Google Form (no-cors)
-    fetch(googleFormURL, {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: formData.toString()
-    });
-
-    // open WhatsApp for USER (pre-filled message)
-    const userMsg =
-      `Hello ${name},%0AYour booking at Shanti Palace is confirmed!%0A%0ARoom: ${roomType}%0ADates: ${checkIn} to ${checkOut}%0AMembers: ${members}%0AAmount Paid: ₹${finalAmount}%0A%0APayment ID: ${paymentId}%0A%0AThank you!`;
-    window.open(`https://wa.me/${phone}?text=${userMsg}`, "_blank");
-
-    // open WhatsApp for OWNER (notification) — change owner number if needed
-    const OWNER_PHONE = "918630760100";
-    const ownerMsg =
-      `New Booking Received!%0A%0AName: ${name}%0APhone: ${phone}%0ARoom: ${roomType}%0ADates: ${checkIn} to ${checkOut}%0AMembers: ${members}%0AAmount: ₹${finalAmount}%0APayment ID: ${paymentId}`;
-    setTimeout(()=> window.open(`https://wa.me/${OWNER_PHONE}?text=${ownerMsg}`, "_blank"), 800);
-
-    // redirect to thank-you / success page
-    setTimeout(()=> window.location.href = "success.html", 1400);
-  }
-</script>
-</body>
-</html>
-
+  const members = localStorage.getItem("members") || ""
