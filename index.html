@@ -94,7 +94,7 @@
     <div class="input-group">
       <select id="roomType" required>
         <option value="" disabled selected>Select Room Type</option>
-        <option value="Double Bed Room">Double Bed Room – ₹800/day</option>
+        <option value="Double Bed Room">Double Bed Room – ₹10/day</option>
         <option value="Three Bed Room">Three Bed Room – ₹1200/day</option>
         <option value="Four Bed Room">Four Bed Room – ₹1600/day</option>
       </select>
@@ -183,7 +183,7 @@
 
     const roomType = document.getElementById("roomType").value;
     let pricePerDay = 0;
-    if (roomType === "Double Bed Room") pricePerDay = 800;
+    if (roomType === "Double Bed Room") pricePerDay = 10;
     if (roomType === "Three Bed Room") pricePerDay = 1200;
     if (roomType === "Four Bed Room") pricePerDay = 1600;
 
@@ -223,5 +223,6 @@
 
 </body>
 </html>
+
 
 
