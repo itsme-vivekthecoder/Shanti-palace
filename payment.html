@@ -98,9 +98,9 @@
     const userMsg =
       `Hello ${name},%0AYour booking at Shanti Palace is confirmed!%0A%0ARoom: ${roomType}%0ADates: ${checkIn} to ${checkOut}%0AMembers: ${members}%0AAmount Paid: ₹${finalAmount}%0A%0APayment ID: ${paymentId}`;
 
-    window.open(`https://wa.me/91${cleanPhone}?text=${userMsg}`, "_blank");
+    window.open(`https://wa.me/${cleanPhone}?text=${userMsg}`, "_blank");
 
-    const OWNER_PHONE = "918630760100";
+    const OWNER_PHONE = "8630760100";
     const ownerMsg =
       `New Booking Received!%0A%0AName: ${name}%0APhone: ${phone}%0ARoom: ${roomType}%0ADates: ${checkIn} to ${checkOut}%0AMembers: ${members}%0AAmount: ₹${finalAmount}%0APayment ID: ${paymentId}`;
 
@@ -115,3 +115,4 @@
 </script>
 </body>
 </html>
+
