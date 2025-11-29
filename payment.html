@@ -68,53 +68,82 @@
     rzp.open();
   });
 
-  function submitBookingAfterPayment(paymentId) {
+function submitBookingAfterPayment(paymentId) {
 
-    const cleanPhone = phone.replace(/\D/g, "").replace(/^0+/, "");
+  // Clean user phone number
+  const cleanPhone = phone.replace(/\D/g, "").replace(/^0+/, "");
 
-    const googleFormURL = 
-    "https://docs.google.com/forms/d/e/1FAIpQLSciTMHoPTqDOYNXGWZ-U01QO0cihDlAUwiwuu2HjZbXwTLucw/formResponse";
+  // ---------- GOOGLE FORM SUBMIT ----------
+  const googleFormURL = 
+  "https://docs.google.com/forms/d/e/1FAIpQLSciTMHoPTqDOYNXGWZ-U01QO0cihDlAUwiwuu2HjZbXwTLucw/formResponse";
 
-    const formData = new URLSearchParams({
-      "entry.1181525787": name,
-      "entry.26796576": email,
-      "entry.1505113845": phone,
-      "entry.133939998": roomType,
-      "entry.8435932": checkIn,
-      "entry.1082238197": checkOut,
-      "entry.516627955": totalDays,
-      "entry.1301069124": members,
-      "entry.764039404": finalAmount,
-      "entry.2021412614": paymentId
-    });
+  const formData = new URLSearchParams({
+    "entry.1181525787": name,
+    "entry.1505113845": phone,
+    "entry.26796576": email,
+    "entry.133939998": roomType,
+    "entry.8435932": checkIn,
+    "entry.1082238197": checkOut,
+    "entry.516627955": totalDays,
+    "entry.1301069124": members,
+    "entry.764039404": finalAmount,
+    "entry.2021412614": paymentId
+  });
 
-    fetch(googleFormURL, {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: formData.toString()
-    });
+  fetch(googleFormURL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: formData.toString()
+  });
 
-    const userMsg =
-      `Hello ${name},%0AYour booking at Shanti Palace is confirmed!%0A%0ARoom: ${roomType}%0ADates: ${checkIn} to ${checkOut}%0AMembers: ${members}%0AAmount Paid: ₹${finalAmount}%0A%0APayment ID: ${paymentId}`;
+  // ---------- USER WHATSAPP ----------
+  const userMsg =
+    `Hello ${name},%0A%0A` +
+    `Your booking at SHANTI PALACE is CONFIRMED!%0A%0A` +
+    `Room Type: ${roomType}%0A` +
+    `Check-In: ${checkIn}%0A` +
+    `Check-Out: ${checkOut}%0A` +
+    `Members: ${members}%0A` +
+    `Total Days: ${totalDays}%0A` +
+    `Amount Paid: ₹${finalAmount}%0A` +
+    `Payment ID: ${paymentId}%0A%0A` +
+    `Thank you for choosing us!`;
 
-    window.open(`https://wa.me/+91${cleanPhone}?text=${userMsg}`, "_blank");
+  // Send to user
+  window.open(`https://wa.me/91${cleanPhone}?text=${userMsg}`, "_blank");
 
-    const OWNER_PHONE = "+918630760100";
-    const ownerMsg =
-      `New Booking Received!%0A%0AName: ${name}%0APhone: ${phone}%0ARoom: ${roomType}%0ADates: ${checkIn} to ${checkOut}%0AMembers: ${members}%0AAmount: ₹${finalAmount}%0APayment ID: ${paymentId}`;
+  // ---------- OWNER WHATSAPP ----------
+  const OWNER_PHONE = "918630760100";
 
-    setTimeout(() => {
-      window.location.href = `https://wa.me/+91${OWNER_PHONE}?text=${ownerMsg}`;
-    }, 600);
+  const ownerMsg =
+    `New Booking Received!%0A%0A` +
+    `Name: ${name}%0A` +
+    `Phone: ${phone}%0A` +
+    `Email: ${email}%0A` +
+    `Room: ${roomType}%0A` +
+    `Check-In: ${checkIn}%0A` +
+    `Check-Out: ${checkOut}%0A` +
+    `Members: ${members}%0A` +
+    `Total Days: ${totalDays}%0A` +
+    `Amount: ₹${finalAmount}%0A` +
+    `Payment ID: ${paymentId}`;
 
-    setTimeout(() => {
-      window.location.href = "success.html";
-    }, 1500);
-  }
+  // Avoid popup block → redirect method
+  setTimeout(() => {
+    window.location.href = `https://wa.me/${OWNER_PHONE}?text=${ownerMsg}`;
+  }, 800);
+
+  // ---------- SUCCESS PAGE ----------
+  setTimeout(() => {
+    window.location.href = "success.html";
+  }, 1500);
+}
+
 </script>
 </body>
 </html>
+
 
 
 
