@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +11,7 @@
 
 <header>
   <h1>SHANTI PALACE</h1>
- <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
   
   <nav>
     <a href="#home">Home</a>
@@ -31,7 +32,8 @@
   <h2>Our Rooms</h2>
   <div class="rooms">
     <div class="room-card">
-      <div class="slider">
+
+  <div class="slider">
     <div class="slides">
       <img src="banner image.png" alt="Room Image">
       <img src="banner image.png" alt="Room Image">
@@ -41,6 +43,7 @@
     <button class="prev">&#10094;</button>
     <button class="next">&#10095;</button>
   </div>
+
       <h3>Double Bed Room</h3>
       <p>Perfect for solo travelers seeking peace and comfort. Includes free Wi-Fi and AC.</p>
     </div>
@@ -56,10 +59,10 @@
     <button class="prev">&#10094;</button>
     <button class="next">&#10095;</button>
   </div>
+
       <h3>Three Bed Room</h3>
       <p>Spacious and cozy for couples or families. Includes TV, attached bathroom, and Wi-Fi.</p>
     </div>
-    
     <div class="room-card">
       <div class="slider">
     <div class="slides">
@@ -71,6 +74,7 @@
     <button class="prev">&#10094;</button>
     <button class="next">&#10095;</button>
   </div>
+
       <h3>Four Bed Room</h3>
       <p>Comfortable and large room for family stays, with all modern facilities.</p>
     </div>
@@ -80,8 +84,8 @@
 <section id="about">
   <h2>About Us</h2>
   <div class="owners">
-    <div class="owner-card"><img src="" alt="Owner 1"></div>
-    <div class="owner-card"><img src="" alt="Owner 2"></div>
+    <div class="owner-card"><img src="MY PHOTO.jpg" alt="Owner 1"></div>
+    <div class="owner-card"><img src="MY PHOTO.jpg" alt="Owner 2"></div>
   </div>
   <p class="outro">Located near Vidhyapeeth Chauraha, SHANTI PALACE offers peaceful and devotional stays for pilgrims and tourists. Our goal is to provide clean, comfortable rooms and a homely atmosphere just minutes away from Vrindavan’s sacred temples.</p>
 </section>
@@ -91,17 +95,17 @@
 
   <form class="booking-form">
     <div class="input-group">
-      <input id="fullName" type="text" required placeholder=" ">
+      <input id="fullName" type="text" required placeholder="">
       <label>Full Name</label>
     </div>
 
     <div class="input-group">
-      <input id="email" type="email" required placeholder=" ">
+      <input id="email" type="email" required placeholder="">
       <label>Email Address</label>
     </div>
 
     <div class="input-group">
-      <input id="phone" type="tel" required placeholder=" ">
+      <input id="phone" type="tel" required placeholder="">
       <label>Phone Number</label>
     </div>
 
@@ -116,14 +120,14 @@
     </div>
 
     <div class="input-group">
-      <input id="members" type="number" min="1" required placeholder=" ">
+      <input id="members" type="number" min="1" required placeholder="">
       <label>Number of Members</label>
     </div>
 
     <div class="input-group">
       <select id="roomType" required>
         <option value="" disabled selected>Select Room Type</option>
-        <option value="Double Bed Room">Double Bed Room – ₹10/day</option>
+        <option value="Double Bed Room">Double Bed Room – ₹800/day</option>
         <option value="Three Bed Room">Three Bed Room – ₹1200/day</option>
         <option value="Four Bed Room">Four Bed Room – ₹1600/day</option>
       </select>
@@ -157,9 +161,11 @@
 
 <script>
 
-  function toggleMenu() {
+function toggleMenu() {
   document.querySelector("nav").classList.toggle("active");
 }
+
+
   // Scroll animation effect
   const sections = document.querySelectorAll("section");
   window.addEventListener("scroll", () => {
@@ -170,6 +176,8 @@
     });
   });
 
+
+  
 const sliders = document.querySelectorAll(".slider");
 
 sliders.forEach((slider, index) => {
@@ -191,7 +199,8 @@ sliders.forEach((slider, index) => {
   });
 
 });
-  
+
+
   // BOOK NOW BUTTON → scroll to form
   document.getElementById("btnBookNow").addEventListener("click", () => {
     document.getElementById("Booking").scrollIntoView({ behavior: "smooth" });
@@ -234,7 +243,7 @@ sliders.forEach((slider, index) => {
 
     const roomType = document.getElementById("roomType").value;
     let pricePerDay = 0;
-    if (roomType === "Double Bed Room") pricePerDay = 10;
+    if (roomType === "Double Bed Room") pricePerDay = 800;
     if (roomType === "Three Bed Room") pricePerDay = 1200;
     if (roomType === "Four Bed Room") pricePerDay = 1600;
 
@@ -274,9 +283,4 @@ sliders.forEach((slider, index) => {
 
 </body>
 </html>
-
-
-
-
-
 
