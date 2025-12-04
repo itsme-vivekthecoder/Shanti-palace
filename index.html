@@ -31,17 +31,47 @@
   <h2>Our Rooms</h2>
   <div class="rooms">
     <div class="room-card">
-      <img src="" alt="Double bed room">
+      <div class="slider">
+    <div class="slides">
+      <img src="banner image.png" alt="Room Image">
+      <img src="banner image.png" alt="Room Image">
+      <img src="banner image.png" alt="Room Image">
+    </div>
+
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
+  </div>
+</div>
       <h3>Double Bed Room</h3>
       <p>Perfect for solo travelers seeking peace and comfort. Includes free Wi-Fi and AC.</p>
     </div>
     <div class="room-card">
-      <img src="" alt="Three bed room">
+      <div class="slider">
+    <div class="slides">
+      <img src="banner image.png" alt="Room Image">
+      <img src="banner image.png" alt="Room Image">
+      <img src="banner image.png" alt="Room Image">
+    </div>
+
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
+  </div>
+</div>
       <h3>Three Bed Room</h3>
       <p>Spacious and cozy for couples or families. Includes TV, attached bathroom, and Wi-Fi.</p>
     </div>
     <div class="room-card">
-      <img src="" alt="Four bed room">
+      <div class="slider">
+    <div class="slides">
+      <img src="banner image.png" alt="Room Image">
+      <img src="banner image.png" alt="Room Image">
+      <img src="banner image.png" alt="Room Image">
+    </div>
+
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
+  </div>
+</div>
       <h3>Four Bed Room</h3>
       <p>Comfortable and large room for family stays, with all modern facilities.</p>
     </div>
@@ -141,6 +171,28 @@
     });
   });
 
+const sliders = document.querySelectorAll(".slider");
+
+sliders.forEach((slider, index) => {
+
+  const slides = slider.querySelector(".slides");
+  const images = slides.querySelectorAll("img");
+
+  let currentIndex = 0;
+  const total = images.length;
+
+  slider.querySelector(".next").addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % total;
+    slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+  });
+
+  slider.querySelector(".prev").addEventListener("click", () => {
+    currentIndex = (currentIndex - 1 + total) % total;
+    slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+  });
+
+});
+  
   // BOOK NOW BUTTON → scroll to form
   document.getElementById("btnBookNow").addEventListener("click", () => {
     document.getElementById("Booking").scrollIntoView({ behavior: "smooth" });
@@ -223,6 +275,7 @@
 
 </body>
 </html>
+
 
 
 
